@@ -2,8 +2,9 @@ from dotenv import load_dotenv
 import os
 from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
+from langchain_ollama import ChatOllama
 
-load_dotenv()
+# load_dotenv()
 def main():
     print(f"API Key {os.getenv('OPENAI_API_KEY')}")
 
@@ -27,7 +28,10 @@ given the information {information}, about a person, I want you to create
         template=summary_template
     )
 
-    llm = ChatOpenAI(temperature = 0,model="gpt-4o")
+    # llm = ChatOpenAI(temperature = 0,model="gpt-4o")
+    llm = ChatOllama(temperature = 0,
+                     model="gemma3:1b",
+                     base_url="http://localhost:11434")
     chain = summary_prompt_template | llm
 
     response = chain.invoke(input={"information": information})
