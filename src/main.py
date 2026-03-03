@@ -4,7 +4,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain_ollama import ChatOllama
 
-# load_dotenv()
+load_dotenv()
 def main():
     print(f"API Key {os.getenv('OPENAI_API_KEY')}")
 
